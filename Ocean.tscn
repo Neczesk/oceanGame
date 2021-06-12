@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://gerstner.shader" type="Shader" id=1]
+[ext_resource path="res://Ocean.gd" type="Script" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/Q = 0.2
+shader_param/wave_0 = Plane( 4.65244, 0.279147, 0.640966, -0.411295 )
+shader_param/wave_1 = Plane( 3.74016, 0.22441, -0.40875, 0.642591 )
+shader_param/wave_2 = Plane( 4.65678, 0.279407, 0.678292, -0.346295 )
+shader_param/wave_3 = Plane( 4.24644, 0.254787, -0.0811266, -0.757244 )
+shader_param/wave_4 = Plane( 5.30363, 0.318218, -0.0874933, 0.756535 )
+shader_param/wave_5 = Plane( 2.20069, 0.132041, -0.71407, -0.264771 )
+shader_param/wave_6 = Plane( 2.02884, 0.12173, 0.701376, 0.296768 )
+shader_param/wave_7 = Plane( 2.65929, 0.159557, -0.76081, 0.0341715 )
+shader_param/wave_8 = Plane( 2.41954, 0.145172, 0.14262, 0.748104 )
+shader_param/wave_9 = Plane( 2.61966, 0.157179, -0.402006, -0.646832 )
+shader_param/wave_10 = Plane( 0.459158, 0.0275495, 0.612841, 0.452135 )
+shader_param/wave_11 = Plane( 0.41517, 0.0249102, 0.556073, -0.520368 )
+shader_param/wave_12 = Plane( 0.487368, 0.0292421, 0.268183, 0.712796 )
+shader_param/wave_13 = Plane( 0.364081, 0.0218449, 0.388976, 0.65475 )
+shader_param/wave_14 = Plane( 0.498362, 0.0299017, -0.399627, 0.648304 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 8192, 8192 )
+subdivide_width = 1048
+subdivide_depth = 1048
+
+[node name="Ocean" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9238, 34.9264, -23.058 )
+mesh = SubResource( 2 )
+material/0 = null
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.929458, 0.233401, -0.285712, 0, 0.77444, 0.632647, 0.368927, -0.588019, 0.71981, -86.4724, 103.574, 180.64 )
+far = 1049.5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
