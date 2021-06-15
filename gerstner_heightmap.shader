@@ -6,21 +6,21 @@ uniform float Q = 0.2;
 
 //each wave gets an array
 //In order: wavelength, amplitude, direction.x, direction.y
-uniform vec4 wave_0 = vec4(4.792423, 0.287545, 0.6679, -0.365937);
-uniform vec4 wave_1 = vec4(3.759308, 0.225558, -0.242432, 0.72196);
-uniform vec4 wave_2 = vec4(5.263312, 0.315799, -0.701566, 0.296319);
-uniform vec4 wave_3 = vec4(4.918343, 0.295101, 0.691606, -0.318875);
-uniform vec4 wave_4 = vec4(4.722698, 0.283362, 0.740368, -0.17848);
-uniform vec4 wave_5 = vec4(2.231143, 0.133869, -0.08292, -0.75705);
-uniform vec4 wave_6 = vec4(2.491879, 0.149513, -0.601034, 0.467716);
-uniform vec4 wave_7 = vec4(2.380039, 0.142802, 0.512172, 0.563631);
-uniform vec4 wave_8 = vec4(2.341395, 0.140484, 0.726642, 0.228015);
-uniform vec4 wave_9 = vec4(2.136036, 0.128162, -0.747891, 0.143732);
-uniform vec4 wave_10 = vec4(0.383914, 0.023035, 0.740611, 0.177469);
-uniform vec4 wave_11 = vec4(0.449218, 0.026953, 0.228728, -0.726418);
-uniform vec4 wave_12 = vec4(0.44972, 0.026983, -0.652778, 0.392277);
-uniform vec4 wave_13 = vec4(0.472002, 0.02832, 0.050137, 0.759925);
-uniform vec4 wave_14 = vec4(0.462938, 0.027776, -0.56865, 0.506594);
+uniform vec4 wave_0 = vec4(30.204023, 1.812241, 0.456148, 0.60986);
+uniform vec4 wave_1 = vec4(27.422121, 1.645327, -0.184917, 0.738787);
+uniform vec4 wave_2 = vec4(39.679749, 2.380785, 0.76153, -0.008503);
+uniform vec4 wave_3 = vec4(34.826313, 2.089579, 0.733377, -0.205326);
+uniform vec4 wave_4 = vec4(34.387756, 2.063265, 0.746639, -0.150098);
+uniform vec4 wave_5 = vec4(19.181908, 1.150915, 0.608518, -0.457937);
+uniform vec4 wave_6 = vec4(14.437761, 0.866266, 0.758792, 0.065079);
+uniform vec4 wave_7 = vec4(18.730997, 1.12386, 0.506575, 0.568667);
+uniform vec4 wave_8 = vec4(14.588003, 0.87528, 0.638712, -0.414786);
+uniform vec4 wave_9 = vec4(15.42426, 0.925456, -0.713352, -0.266701);
+uniform vec4 wave_10 = vec4(3.548167, 0.21289, -0.066858, 0.758637);
+uniform vec4 wave_11 = vec4(2.869323, 0.172159, -0.570269, 0.50477);
+uniform vec4 wave_12 = vec4(3.666171, 0.21997, -0.751441, 0.123839);
+uniform vec4 wave_13 = vec4(3.752006, 0.22512, -0.416022, -0.637907);
+uniform vec4 wave_14 = vec4(2.995751, 0.179745, -0.428207, 0.629793);
 
 const float PI = 3.14159265358979323846;
 const float twoPI = PI*2.0;

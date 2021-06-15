@@ -1,4 +1,3 @@
-tool
 extends MeshInstance
 
 
@@ -10,16 +9,15 @@ extends MeshInstance
 #export var wind_direction: Vector2 = Vector2(0.5,0.7) setget set_wind_direction
 #export var wind_strength: float = 13.4 setget set_wind_strength
 export var wave_Q: float = 0.2 setget set_wave_Q
-var med_wave_height: float = 0.26934
-var med_wavelength: float = 4.489
+var med_wave_height: float = 2.0535
+var med_wavelength: float = 34.225
 var med_wave_direction: Vector2 = Vector2(0.3, 0.7)
 
 func set_wind(strength:float, direction: Vector2):
 	med_wave_height = pow(strength, 2) * 0.0015
-	print(med_wave_height)
 	med_wavelength = pow(strength, 2) * 0.025
 	med_wave_direction = direction
-	print("Wind set on Ocean")
+#	print("Wind set on Ocean")
 	generate_waves()
 
 #func set_wind_strength(new_wind_strength):
@@ -96,15 +94,15 @@ func _ready():
 #	print(self.get_active_material(0).get_shader_param("Q"))
 #	print(self.get_active_material(0).get_shader_param("num_waves"))
 #	set_num_waves(15)
-	check_parameter_equality()
+#	check_parameter_equality()
 #	print("old waves")
 #	print_waves()
-	generate_waves()
+#	generate_waves()
 #	for i in range(0, 15):
 #		waves[i] = Color(0,0,0,0)
-	check_wave_equality()
+#	check_wave_equality()
 	
-	check_parameter_equality()
+#	check_parameter_equality()
 #	print("new waves")
 #	print_waves()
 
@@ -135,4 +133,16 @@ func check_wave_equality():
 			print("waves aren't the same")
 
 func _on_Timer_timeout():
-	pass # Replace with function body.
+	pass
+	
+func get_height_at_point(hpos: Vector2) -> float:
+	var output = 0.0
+	for wave in waves:
+		output += wave_height(wave, OS.get_ticks_msec(), hpos)
+	return output
+	
+func wave_height(wave_vec: Plane, time: float, hpos: Vector2) -> float:
+	var speed: float = sqrt(9.8 * (TAU/wave_vec.x))
+	var w = 2.0 / wave_vec.x
+	var dot = hpos.dot(w*Vector2(wave_vec.z, wave_vec.d))
+	return wave_vec.y * sin(dot + (speed * time))

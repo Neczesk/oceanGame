@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ocean.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sailboat_TESTING.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sailboat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 
 [sub_resource type="ProceduralSky" id=1]
@@ -11,10 +11,13 @@ background_mode = 2
 background_sky = SubResource( 1 )
 fog_depth_begin = 0.0
 
+[sub_resource type="CubeMesh" id=3]
+
 [node name="World" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="Ocean" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -23,5 +26,17 @@ environment = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, -0.966138, 0.258027, 0, -0.258027, -0.966138, 0, 30.4943, -50.8721 )
 directional_shadow_mode = 1
 
-[node name="sailboat" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 27.5212, 0 )
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23672, 5.69304 )
+
+[node name="Camera" type="Camera" parent="Spatial"]
+far = 2000.0
+
+[node name="Sailboat" parent="." instance=ExtResource( 2 )]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="floatTest" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 3 )
+material/0 = null

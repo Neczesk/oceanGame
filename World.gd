@@ -24,9 +24,17 @@ func set_wind(strength: float, direction: Vector2):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_wind(13.4, Vector2(0.3,0.7))
+	set_wind(50, Vector2(0.3,0.7))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _physics_process(delta):
+	for child in get_children():
+		if child is RigidBody:
+			if "distance_from_water_level" in child:
+				child.distance_from_water_level = $Ocean.get_height_at_point(Vector2(child.global_transform.origin.x, child.transform.origin.z)) - child.transform.origin.y
+			
+	
