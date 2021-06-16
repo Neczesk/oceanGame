@@ -1,5 +1,4 @@
-shader_type spatial;
-render_mode specular_toon;
+shader_type canvas_item;
 
 uniform float Q = 0.2;
 //uniform int num_waves = 15;
@@ -132,15 +131,12 @@ vec3 wave_normal(vec3 pos, float time){
 
 
 void vertex(){
-	VERTEX = wave(VERTEX, TIME);
-	NORMAL = wave_normal(VERTEX, TIME);
+
 }
 
 
 void fragment(){
-	float fresnel = sqrt(1.0 - dot(NORMAL, VIEW));
-	RIM = 0.1;
-	METALLIC = 0.0;
-	ROUGHNESS = 0.01 * (1.0 - fresnel);
-	ALBEDO = vec3(0.1,0.2,0.3) + (0.1 * fresnel);
+//	COLOR = vec4(wave(FRAGCOORD.xyz, TIME), 1.0);
+vec3 wave = wave(FRAGCOORD.xzy, TIME);
+COLOR = vec4(wave.x/10.0, wave.y/10.0, wave.z/10.0, 1.0);
 }

@@ -7,6 +7,7 @@ extends Spatial
 export var wind_strength: float = 13.4 setget set_wind_strength
 export var wind_direction: Vector2 = Vector2(0.3, 0.7) setget set_wind_direction
 
+
 #This function deliberately does nothing. Use set_wind() instead
 func set_wind_strength(new_wind_strength: float):
 	pass
@@ -25,6 +26,7 @@ func set_wind(strength: float, direction: Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_wind(50, Vector2(0.3,0.7))
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +36,14 @@ func _ready():
 func _physics_process(delta):
 	for child in get_children():
 		if child is RigidBody:
-			if "distance_from_water_level" in child:
-				child.distance_from_water_level = $Ocean.get_height_at_point(Vector2(child.global_transform.origin.x, child.transform.origin.z)) - child.transform.origin.y
+			if "wind_strength" in child and "wind_direction" in child:
+				child.wind_strength = wind_strength
+				child.wind_direction = wind_direction
+#			if "distance_from_water_level" in child:
+#				child.distance_from_water_level = $Ocean.get_height_at_point(Vector2(child.global_transform.origin.x, child.transform.origin.z)) - child.transform.origin.y
 			
 	
+
+
+func _on_Timer_timeout():
+	pass # Replace with function body.

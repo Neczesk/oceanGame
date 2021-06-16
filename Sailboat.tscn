@@ -8,11 +8,16 @@ radius = 0.649594
 height = 1.67518
 
 [node name="Sailboat" type="RigidBody"]
-linear_damp = 1.095
+mass = 100.0
+linear_damp = 5.448
 script = ExtResource( 2 )
 
 [node name="sailboat-nosail-1" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.469021, 0 )
 shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.965926, 0.0669873, -0.25, -1.13133e-08, 0.965926, 0.258819, 0.258819, -0.25, 0.933013, 0.140426, 2.00254, 2.41786 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ocean.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sailboat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://assets/rock-structure-2.fbx" type="PackedScene" id=4]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -26,17 +27,22 @@ environment = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, -0.966138, 0.258027, 0, -0.258027, -0.966138, 0, 30.4943, -50.8721 )
 directional_shadow_mode = 1
 
-[node name="Spatial" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23672, 5.69304 )
-
-[node name="Camera" type="Camera" parent="Spatial"]
-far = 2000.0
-
 [node name="Sailboat" parent="." instance=ExtResource( 2 )]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
+angular_damp = 2.0
 
 [node name="floatTest" type="MeshInstance" parent="."]
 visible = false
 mesh = SubResource( 3 )
 material/0 = null
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="rock-structure-2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 17.4657, -0.362764, 64.5226 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

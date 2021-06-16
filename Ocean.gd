@@ -18,7 +18,7 @@ func set_wind(strength:float, direction: Vector2):
 	med_wavelength = pow(strength, 2) * 0.025
 	med_wave_direction = direction
 #	print("Wind set on Ocean")
-	generate_waves()
+#	generate_waves()
 
 #func set_wind_strength(new_wind_strength):
 #	wind_strength = new_wind_strength
@@ -45,7 +45,7 @@ var waves: Array = []
 func generate_waves():
 #	var median_wave_height = pow(wind_strength, 2) * 0.0015
 #	var median_wavelength = pow(wind_strength, 2) * 0.025
-	check_parameter_equality()
+#	check_parameter_equality()
 	var file = File.new()
 	file.open("res://shader_defaults.txt", File.WRITE)
 
@@ -88,6 +88,7 @@ func new_wave(median_height: float, median_length: float, wave_number: int) -> P
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+#	get_active_material(0).set_shader_param("heightmap", $Viewport.get_texture())
 #	set_n_waves(num_waves)
 #	set_Q(wave_Q)
 
@@ -133,12 +134,16 @@ func check_wave_equality():
 			print("waves aren't the same")
 
 func _on_Timer_timeout():
+#	var bob =
 	pass
 	
 func get_height_at_point(hpos: Vector2) -> float:
-	var output = 0.0
+	var temp_hpos: Vector2 = Vector2(hpos.x, hpos.y)
+	temp_hpos.x += mesh.size.x/2
+	temp_hpos.y += mesh.size.y/2
+	var output: float = 0.0
 	for wave in waves:
-		output += wave_height(wave, OS.get_ticks_msec(), hpos)
+		output += wave_height(wave, OS.get_ticks_msec(), temp_hpos)
 	return output
 	
 func wave_height(wave_vec: Plane, time: float, hpos: Vector2) -> float:
